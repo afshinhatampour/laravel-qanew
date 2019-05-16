@@ -12,7 +12,17 @@
                         @foreach($questions as $question)
                             <div class="card mb-3 q-card">
                                 <div class="card-header q-card-title">
-                                    {{ $question->title  }}
+                                    <h3>
+                                        <a href="{{ $question->url }}"> {{ $question->title  }} </a>
+                                    </h3>
+                                    <p class="lead">Asked by :
+                                        <a href="{{ $question->user->url }}">
+                                            {{ $question->user->name }}
+                                        </a>
+                                        <small class="text-muted">
+                                            {{ $question->created_date }}
+                                        </small>
+                                    </p>
                                 </div>
                                 <div class="card-body q-card-body">
                                     {{ str_limit($question->body, 250) }}

@@ -15,3 +15,7 @@
 .q-card{
     box-shadow: 2px 0 5px #535c68;
 }
+a:hover{
+    text-decoration: none;
+    color: white;
+}
