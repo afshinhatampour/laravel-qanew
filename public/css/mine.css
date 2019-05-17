@@ -2,12 +2,10 @@
     border-radius: 0 !important;
 }
 .q-card-title{
-    background-color: #130f40;
-    color: #dff9fb;
+    color: rgb(1,51,68);
 }
 .q-card-body{
     color: #535c68;
-    background-color: #dff9fb;
 }
 .q-list-title{
     color:#95afc0;
@@ -18,4 +16,35 @@
 a:hover{
     text-decoration: none;
     color: white;
+}
+.vote{
+    height: 33%;
+    text-align: center;
+    padding-top: 7% !important;
+}
+.status{
+    height: 33%;
+    text-align: center;
+    padding-top: 7% !important;
+}
+.view{
+    height: 33%;
+    text-align: center;
+    padding-top: 7% !important;
+}
+.question-container{
+    background-color: #f1f1f1;
+    border-left: 2px solid darkblue;
+}
+.status-unaswered{
+    border: none;
+}
+.status-answered{
+    border-left: #2a9055 2px solid;
+    color:#2a9055;
+}
+.status-answered-accepted{
+    color:white;
+    text-shadow: #2a9055 0 0 5px;
+    background-color: #2a9055;
 }
