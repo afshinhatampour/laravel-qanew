@@ -6,7 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <p class="display-4 q-list-title">All Questions</p>
+                        <p class="display-4 q-list-title" style="display:inline">All Questions</p>
+                        <a href="{{ route('questions.create') }}" class="btn btn-sm btn-primary float-right">Ask a question</a>
                     </div>
                     <div class="card-body">
                         @foreach($questions as $question)
