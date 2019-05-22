@@ -44,10 +44,10 @@ class QuestionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Questions  $questions
+     * @param  \App\Question  $questions
      * @return \Illuminate\Http\Response
      */
-    public function show(Questions $questions)
+    public function show(Question $questions)
     {
         //
     }
@@ -55,33 +55,35 @@ class QuestionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Questions  $questions
+     * @param  \App\Question  $questions
      * @return \Illuminate\Http\Response
      */
-    public function edit(Questions $questions)
+    public function edit($id)
     {
-        //
+        $question = Question::findOrFail($id);
+        return view('questions.edit', compact('question'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Questions  $questions
+     * @param  \App\Question  $questions
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Questions $questions)
+    public function update(AskQuestionResquest $request, Question $question)
     {
-        //
+        $question->update($request->only('title', 'body'));
+        return redirect('/questions')->with('success', 'your question has been updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Questions  $questions
+     * @param  \App\Question  $questions
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Questions $questions)
+    public function destroy(Question $questions)
     {
         //
     }
