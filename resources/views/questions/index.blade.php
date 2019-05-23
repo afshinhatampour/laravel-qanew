@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session()->has('success'))
+    <p class="alert alert-success">{{ session('success') }}</p>
+@endif
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -33,7 +36,15 @@
                                     <h3>
                                         <a href="{{ $question->url }}"> {{ $question->title  }} </a>
                                     </h3>
-                                    <a href="{{ route('questions.edit', $question->id) }}" class="btn btn-sm btn-outline-info">Edit</a>
+                                    <a href="{{ route('questions.edit', $question->id) }}" 
+                                        class="m-1 btn btn-sm btn-outline-info">
+                                            Edit
+                                    </a>
+                                    <form action="{{ route('questions.destroy', $question->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm('are you sure ?');" type="submit" class="m-1 btn btn-sm btn-outline-danger">X</button>
+                                    </form>
                                 </div>
                                 <p class="lead">Asked by :
                                     <a href="{{ $question->user->url }}">

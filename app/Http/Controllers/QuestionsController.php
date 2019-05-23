@@ -38,6 +38,7 @@ class QuestionsController extends Controller
     public function store(AskQuestionResquest $request)
     {
         $request->user()->questions()->create($request->only('title', 'body'));
+        session()->flash('success', 'question has been added successfuly');
         return redirect(route('questions.index'));
     }
 
@@ -47,9 +48,10 @@ class QuestionsController extends Controller
      * @param  \App\Question  $questions
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $questions)
+    public function show(Question $question)
     {
-        //
+        $question->increment('views');
+        return view('questions.show', compact('question'));
     }
 
     /**
@@ -74,6 +76,7 @@ class QuestionsController extends Controller
     public function update(AskQuestionResquest $request, Question $question)
     {
         $question->update($request->only('title', 'body'));
+        session()->flash('success', 'question updated successfuly');
         return redirect('/questions')->with('success', 'your question has been updated');
     }
 
@@ -83,8 +86,10 @@ class QuestionsController extends Controller
      * @param  \App\Question  $questions
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $questions)
+    public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        session()->flash('success', 'question has been deleted successfuly');
+        return redirect('/questions');
     }
 }
