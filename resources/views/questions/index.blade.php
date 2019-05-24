@@ -2,7 +2,7 @@
 
 @section('content')
 @if (session()->has('success'))
-    <p class="alert alert-success">{{ session('success') }}</p>
+<p class="alert alert-success">{{ session('success') }}</p>
 @endif
 <div class="container">
     <div class="row">
@@ -36,15 +36,20 @@
                                     <h3>
                                         <a href="{{ $question->url }}"> {{ $question->title  }} </a>
                                     </h3>
-                                    <a href="{{ route('questions.edit', $question->id) }}" 
+                                    @can ('update', $question)
+                                    <a href="{{ route('questions.edit', $question->id) }}"
                                         class="m-1 btn btn-sm btn-outline-info">
-                                            Edit
+                                        Edit
                                     </a>
+                                    @endcan
+                                    @can ('delete', $question)
                                     <form action="{{ route('questions.destroy', $question->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button onclick="return confirm('are you sure ?');" type="submit" class="m-1 btn btn-sm btn-outline-danger">X</button>
+                                        <button onclick="return confirm('are you sure ?');" type="submit"
+                                            class="m-1 btn btn-sm btn-outline-danger">X</button>
                                     </form>
+                                    @endcan
                                 </div>
                                 <p class="lead">Asked by :
                                     <a href="{{ $question->user->url }}">
