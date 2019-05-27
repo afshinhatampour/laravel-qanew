@@ -16,6 +16,19 @@
   </div>
   <div class="text-muted bg-white p-2">
     {!! $question->body_html !!}
+    <div>
+      <a href="#" class="vote-up" title="This question is usefull">
+        <i class="fas fa-caret-up"></i>
+      </a>
+      <span>1230</span>
+      <a href="#" class="vote-down" title="This question is not usefull">
+          <i class="fas fa-caret-down"></i>
+      </a><br>
+      <a class="favorite" href="#" title="Click to mark as favorite question">
+          <i class="fas fa-star"></i>
+      </a>
+      <span class="favorite-num">123</span>
+    </div>
     <div style="font-size:12px" class="float-right text-muted">
       <span>{{ $question->CreatedDate }}</span>
       <a href="{{ $question->user->url }}" class="pr-2">
@@ -36,6 +49,18 @@
       <div class="media bg-dark text-white p-2 mb-2">
         <div class="media-body">
           {!! $answer->body_html !!}
+          <div>
+            <a href="#" class="vote-up" title="This question is usefull">
+              <i class="fas fa-caret-up"></i>
+            </a>
+            <span>1230</span>
+            <a href="#" class="vote-down" title="This question is not usefull">
+                <i class="fas fa-caret-down"></i>
+            </a><br>
+            <a class="favorite" href="#" title="Click to mark as favorite question">
+                <i class="fas fa-check"></i>
+            </a>
+          </div>
           <div style="font-size:12px" class="float-right text-muted">
             <span>{{ $answer->CreatedDate }}</span>
             <a href="{{ $answer->user->url }}" class="pr-2">
