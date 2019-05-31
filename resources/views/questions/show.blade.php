@@ -2,7 +2,7 @@
 
 @section('content')
 @if (session()->has('success'))
-  <p class="alert alert-success">{{ session('success') }}</p>
+<p class="alert alert-success">{{ session('success') }}</p>
 @endif
 <div class="container">
   <h1 class="display-4">{{ $question->title }}</h1>
@@ -57,6 +57,23 @@
               <i class="fas fa-caret-up"></i>
             </a>
             <span>1230</span>
+            <div class="row col-md-12">
+              <div class="col-md-10">
+              </div>
+              <div class="col-md-2 row pull-right">
+                @can('update', $answer)
+                <a class="btn btn-success btn-sm m-1"
+                  href="{{ route('questions.answers.edit', [$question->id, $answer->id]) }}">edit</a>
+                @endcan
+                @can('delete', $answer)
+                <form method="post" action="{{ route('questions.answers.destroy', [$question->id, $answer->id]) }}">
+                  @method('DELETE')
+                  @csrf
+                  <button class="btn btn-danger btn-sm m-1" type="submit">delete</button>
+                </form>
+                @endcan
+              </div>
+            </div>
             <a href="#" class="vote-down" title="This question is not usefull">
               <i class="fas fa-caret-down"></i>
             </a><br>
@@ -85,9 +102,9 @@
         <div class="form-group">
           <textarea name="body" class="form-control" cols="30" rows="10"></textarea>
           @if ($errors->has('body'))
-              <div class="invalid-feedback">
-                <strong>{{ $errors->first('body') }}</strong>
-              </div>
+          <div class="invalid-feedback">
+            <strong>{{ $errors->first('body') }}</strong>
+          </div>
           @endif
         </div>
         <div class="form-group">

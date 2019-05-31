@@ -24,6 +24,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/mine.css') }}" rel="stylesheet">
+    <style>
+        .btn{
+            border-radius: 0;
+        }
+    </style>
 </head>
 
 <body>
