@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session()->has('success'))
+  <p class="alert alert-success">{{ session('success') }}</p>
+@endif
 <div class="container">
   <h1 class="display-4">{{ $question->title }}</h1>
   <div class="col-md-12 row">
@@ -22,10 +25,10 @@
       </a>
       <span>1230</span>
       <a href="#" class="vote-down" title="This question is not usefull">
-          <i class="fas fa-caret-down"></i>
+        <i class="fas fa-caret-down"></i>
       </a><br>
       <a class="favorite" href="#" title="Click to mark as favorite question">
-          <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
       </a>
       <span class="favorite-num">123</span>
     </div>
@@ -55,10 +58,10 @@
             </a>
             <span>1230</span>
             <a href="#" class="vote-down" title="This question is not usefull">
-                <i class="fas fa-caret-down"></i>
+              <i class="fas fa-caret-down"></i>
             </a><br>
             <a class="favorite" href="#" title="Click to mark as favorite question">
-                <i class="fas fa-check"></i>
+              <i class="fas fa-check"></i>
             </a>
           </div>
           <div style="font-size:12px" class="float-right text-muted">
@@ -76,6 +79,21 @@
         </div>
       </div>
       @endforeach
+      <h4>Your Answer : </h4>
+      <form action="{{ route('questions.answers.store', $question->id) }}" method="POST">
+        @csrf
+        <div class="form-group">
+          <textarea name="body" class="form-control" cols="30" rows="10"></textarea>
+          @if ($errors->has('body'))
+              <div class="invalid-feedback">
+                <strong>{{ $errors->first('body') }}</strong>
+              </div>
+          @endif
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-outline-info">Submit</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
